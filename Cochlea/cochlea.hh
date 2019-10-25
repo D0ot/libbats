@@ -44,6 +44,7 @@
 #include <memory>
 #include <unordered_map>
 #include <map>
+#include <vector>
 #include <Eigen/Core>
 #include <Eigen/Geometry>
 

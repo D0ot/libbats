@@ -288,7 +288,7 @@ namespace bats
 
   inline Eigen::VectorXd AgentModel::getJointAngles()
   {
-    Eigen::VectorXd jointAngles(Types::NJOINTS);
+    Eigen::VectorXd jointAngles((size_t)Types::NJOINTS);
     for (int j = 0; j < Types::NJOINTS; ++j)
       jointAngles(j) = d_joints[(Types::Joint)j]->angle->getMu()(0);
     return jointAngles;

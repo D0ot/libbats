@@ -6,7 +6,7 @@ void MotionSequencePlayer::runCurrentStep()
 
   double t = clock.getTime() - d_sequenceStartTime;
 
-  VectorXd targetAngles(Types::NJOINTS);
+  VectorXd targetAngles((size_t)Types::NJOINTS);
 
   //
   // If an end time (duration) was specified
