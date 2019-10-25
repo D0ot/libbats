@@ -1,10 +1,25 @@
 #include "dribbleagent.ih"
+#include "Debugger/RoboVizDebugger/robovizdebugger.hh"
+#include "Shape/shape.hh"
 
 void DribbleAgent::think()
 {
   AgentModel& am = SAgentModel::getInstance();
   WorldModel& wm = SWorldModel::getInstance();
+  Localizer& lz = SLocalizer::getInstance();
   Cerebellum& cer = SCerebellum::getInstance();
+
+  Debugger& dbg = SDebugger::getInstance();
+
+
+  if(dbg.isEnabled())
+  {
+    dbg.draw(std::make_shared<Circle>(lz.getBall()->getPositionGlobal(), 0.25));
+    dbg.draw(std::make_shared<Circle>(lz.getMe()->getPositionGlobal(), 0.25));
+  } else
+  {
+    dbg.start();
+  }
   
   VectorXd jointVelocities;
 

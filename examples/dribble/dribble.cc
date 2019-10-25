@@ -1,4 +1,5 @@
 #include "DribbleAgent/dribbleagent.hh"
+#include "Debugger/RoboVizDebugger/robovizdebugger.hh"
 
 int main()
 {
