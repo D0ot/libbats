@@ -267,14 +267,14 @@ endif(DOXYGEN_FOUND)
 #
 ## PDF manual
 #
-if (PDFLATEX_COMPILER)
-  SET(PDFLATEX_COMMAND  ${PDFLATEX_COMPILER} -interaction=batchmode -halt-on-error -output-directory ${CMAKE_CURRENT_BINARY_DIR}/docs/manual libbatsmanual.tex)
-  add_custom_target(manual ALL
-                    mkdir -p ${CMAKE_CURRENT_BINARY_DIR}/docs/manual && ${PDFLATEX_COMMAND} && ${PDFLATEX_COMMAND}
-                    WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/docs/manual
-                    COMMENT "Generating manual with pdfLaTeX"
-  )
-endif(PDFLATEX_COMPILER)
+# if (PDFLATEX_COMPILER)
+#  SET(PDFLATEX_COMMAND  ${PDFLATEX_COMPILER} -interaction=batchmode -halt-on-error -output-directory ${CMAKE_CURRENT_BINARY_DIR}/docs/manual libbatsmanual.tex)
+#  add_custom_target(manual ALL
+#                    mkdir -p ${CMAKE_CURRENT_BINARY_DIR}/docs/manual && ${PDFLATEX_COMMAND} && ${PDFLATEX_COMMAND}
+#                    WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/docs/manual
+#                    COMMENT "Generating manual with pdfLaTeX"
+#  )
+#endif(PDFLATEX_COMPILER)
 
 install(TARGETS bats DESTINATION lib)
 
