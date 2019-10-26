@@ -2,26 +2,32 @@
 #include "Debugger/RoboVizDebugger/robovizdebugger.hh"
 #include "Shape/shape.hh"
 
+
+
+
 void DribbleAgent::think()
 {
   AgentModel& am = SAgentModel::getInstance();
   WorldModel& wm = SWorldModel::getInstance();
   Localizer& lz = SLocalizer::getInstance();
   Cerebellum& cer = SCerebellum::getInstance();
-
+  Cochlea& cochlea = SCochlea::getInstance();
   Debugger& dbg = SDebugger::getInstance();
 
+  dbg.draw(std::make_shared<Sphere>(lz.getBall()->getPositionGlobal(), 0.05));
+  dbg.draw(std::make_shared<Sphere>(lz.getMe()->getPositionGlobal(), 0.05));
 
-  if(dbg.isEnabled())
-  {
-    dbg.draw(std::make_shared<Circle>(lz.getBall()->getPositionGlobal(), 0.25));
-    dbg.draw(std::make_shared<Circle>(lz.getMe()->getPositionGlobal(), 0.25));
-  } else
-  {
-    dbg.start();
-  }
+  auto mypos = cochlea.getInfo(Cochlea::InfoID::iVisionSelfGT);
+  auto ballpos = cochlea.getInfo(Cochlea::InfoID::iVisionBallGT);
+
+  std::cout << "mypos " << mypos << std::endl;
+  std::cout << "ballpos " << ballpos << std::endl;
+
+  
   
   VectorXd jointVelocities;
+
+  
 
   if (!d_gettingUpFrom)
   {

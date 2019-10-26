@@ -113,12 +113,14 @@ namespace bats {
 
       case Parser::PushPred:
 		//		std::cerr << "<<PUSH" << (d_pCurrentState->value-Parser::s_unifiedTable)/256 << ">>";
+    //    std::cerr << "pushPred - d_token:" << d_tokenStr << std::endl;
         d_stck.push(d_stck.top()->push(std::make_shared<Predicate>(d_tokenStr,Predicate::type_node)));
         d_tokenStr.clear();
         return false;
 
       case Parser::AddToPred:
 		//		std::cerr << "<<ADD" << (d_pCurrentState->value-Parser::s_unifiedTable)/256 << ">>";
+    //    std::cerr << "AddToPred - d_token:" << d_tokenStr << std::endl;
         d_stck.top()->push(std::make_shared<Predicate>(d_tokenStr,Predicate::type_leaf));
         d_tokenStr.clear();
         return false;
