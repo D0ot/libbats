@@ -163,6 +163,7 @@ namespace bats
       iVisionLine,   ///< A line segment.
       iVisionSelfGT,   ///< Ground truth of own position.
       iVisionBallGT,   ///< Ground truth of ball position.
+      iVisionMyOrienGT, ///< Ground Truth of own orientation
       iUJ,
       iHJ,
       iHJT,

@@ -2,7 +2,7 @@
 
 void Cochlea::integrate(shared_ptr<Predicate> const &pred)
 {
-//  cout << (pred->toString()) << endl;
+  //cout << "pred->toString()" << (pred->toString()) << endl;
   
   Vector4d vect, vect2;
 
@@ -235,6 +235,17 @@ void Cochlea::integrate(shared_ptr<Predicate> const &pred)
         case iVisionSelfGT:
         {
           d_selfTransform = parseTransform(static_pointer_cast<Predicate>(*j));
+
+          // also make d_info[iVisionSelfGT] available
+          vect = parseVect(static_pointer_cast<Predicate>(*j));
+          d_info[id] = vect;
+          break;
+        }
+
+        case iVisionMyOrienGT:
+        {
+          vect = parseVect(static_pointer_cast<Predicate>(*j));
+          d_info[id] = vect;
           break;
         }
 

@@ -24,6 +24,7 @@ Cochlea::Cochlea()
   d_infoMap["G2R"           ] = iVisionGoal2R;
   d_infoMap["mypos"         ] = iVisionSelfGT;
   d_infoMap["ballpos"       ] = iVisionBallGT;
+  d_infoMap["myorien"       ] = iVisionMyOrienGT;
   d_infoMap["HJ"            ] = iHJ          ;
   d_infoMap["HJT"           ] = iHJT         ;
   d_infoMap["head1"         ] = iHeadJoint1;

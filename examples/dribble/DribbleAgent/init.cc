@@ -29,5 +29,7 @@ void DribbleAgent::init()
   // We have not beamed yet
   d_beamed = false;
 
+  Debugger& dbg = SDebugger::getInstance();
+  dbg.start();
 }
 
