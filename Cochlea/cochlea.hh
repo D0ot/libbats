@@ -484,6 +484,14 @@ namespace bats
      */
     Eigen::Affine3d getSelfTransform() const { return d_selfTransform; }
     
+
+    /** Get the infomation about data update
+     * 
+     * if id's data is processed in last update() process, it return true, else false
+     */
+
+    bool getUpdatedInfo(InfoID id) const { return d_updated[id]; };
+
     // Needed when having fixed sized Eigen member
     EIGEN_MAKE_ALIGNED_OPERATOR_NEW
 
@@ -496,6 +504,7 @@ namespace bats
     Eigen::Vector4d d_info[iInfoID];
     double d_timestamps[iInfoID];
     double d_dt[iInfoID];
+    bool d_updated[iInfoID]; // record iInfoID is updated in these cycle
     std::vector<VisibleLine> d_lines;
     std::vector<Eigen::Vector3d> d_lineEnds;
     

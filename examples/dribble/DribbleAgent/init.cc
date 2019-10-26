@@ -6,7 +6,8 @@ void DribbleAgent::init()
   SConf::getInstance().parseFile("./conf.xml");
 
   // Initialize localizer; use Kalman filter implementation
-  SLocalizer::initialize<KalmanLocalizer>();
+  // SLocalizer::initialize<KalmanLocalizer>();
+  SLocalizer::initialize<SimpleLocalizer>();
 
   // Initialize debugger; use RoboViz implementation
   SDebugger::initialize<RoboVizDebugger>();

@@ -1,12 +1,15 @@
 #include "dribbleagent.ih"
 #include "Debugger/RoboVizDebugger/robovizdebugger.hh"
 #include "Shape/shape.hh"
+#include "cmath"
 
 
 
 
 void DribbleAgent::think()
 {
+  static double sum = 0;
+  static size_t count = 0;
   AgentModel& am = SAgentModel::getInstance();
   WorldModel& wm = SWorldModel::getInstance();
   Localizer& lz = SLocalizer::getInstance();
@@ -17,14 +20,48 @@ void DribbleAgent::think()
   dbg.draw(std::make_shared<Sphere>(lz.getBall()->getPositionGlobal(), 0.05));
   dbg.draw(std::make_shared<Sphere>(lz.getMe()->getPositionGlobal(), 0.05));
 
-  auto mypos = cochlea.getInfo(Cochlea::InfoID::iVisionSelfGT);
-  auto ballpos = cochlea.getInfo(Cochlea::InfoID::iVisionBallGT);
-  auto myorien = cochlea.getInfo(Cochlea::InfoID::iVisionMyOrienGT);
+  if(cochlea.getUpdatedInfo(Cochlea::InfoID::iVisionSelfGT))
+  {
+    Eigen::Vector3d mypos = cochlea.getInfo(Cochlea::InfoID::iVisionSelfGT).head<3>();
+    Eigen::Vector3d ballpos = cochlea.getInfo(Cochlea::InfoID::iVisionBallGT).head<3>();
 
-  std::cout << "mypos " << mypos << std::endl;
-  std::cout << "ballpos " << ballpos << std::endl;
-  std::cout << "myorien " << myorien.x() << std::endl;
-  std::cout << "selftranform : " << cochlea.getSelfTransform().matrix() << std::endl;
+    // m means measure
+    auto m_mypos = lz.getMe()->getPositionGlobal();
+    auto m_ballpos = lz.getBall()->getPositionGlobal();
+
+    auto showVec = [](Eigen::Vector3d &v) {
+      std::cout 
+      << v.x() << ' '
+      << v.y() << ' '
+      << v.z();
+    };
+
+    std::cout << ballpos << '\n' << mypos << std::endl;
+
+    Eigen::Vector3d mdiff = m_mypos - m_ballpos;
+
+    std::cout << "Measure diff : ";
+    showVec(mdiff);
+    std::cout << std::endl;
+
+    Eigen::Vector3d rdiff = mypos - ballpos;
+    std::cout << "Real diff : ";
+    showVec(rdiff);
+    std::cout << std::endl;
+
+    Eigen::Vector3d diff = mdiff - rdiff;
+    std::cout << "Total diff : ";
+    showVec(diff);
+    std::cout << std::endl;
+
+    Eigen::Vector2d dis = diff.head<2>();
+    std::cout << "dis : " << sqrt(dis.dot(dis)) << std::endl;
+
+    sum += sqrt(dis.dot(dis));
+    count++;
+
+    std::cout << "average : " << sum/(double)count << std::endl;
+  }
 
 
   
