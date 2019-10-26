@@ -228,6 +228,9 @@ void Cochlea::integrate(shared_ptr<Predicate> const &pred)
         // Ground truth values: extract and store directly
         case iVisionBallGT:
         {
+          // for debug
+          // std::cout << "parser ballGT\n";
+          // std::cout << static_pointer_cast<Predicate>(*j)->toString() << std::endl;
           vect = parseVect(static_pointer_cast<Predicate>(*j));
           d_info[id] = vect;
           break;
