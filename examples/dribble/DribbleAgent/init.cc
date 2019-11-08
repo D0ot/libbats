@@ -7,7 +7,7 @@ void DribbleAgent::init()
 
   // Initialize localizer; use Kalman filter implementation
   // SLocalizer::initialize<KalmanLocalizer>();
-  SLocalizer::initialize<SimpleLocalizer>();
+  SLocalizer::initialize<KalmanLocalizer>();
 
   // Initialize debugger; use RoboViz implementation
   SDebugger::initialize<RoboVizDebugger>();
