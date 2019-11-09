@@ -12,12 +12,18 @@ INCLUDE(FindPkgConfig)
 
 find_package(Eigen3 REQUIRED)
 find_package(LibXml2 REQUIRED)
+PKG_CHECK_MODULES(SigC++ sigc++-2.0)
 find_package(SigC++ REQUIRED)
 PKG_CHECK_MODULES(GTKMM gtkmm-2.4)
 find_package(Doxygen)
 find_package(LATEX)
 
-set(CMAKE_CXX_FLAGS "-std=c++0x -Wno-deprecated-register")
+# original and -Wno-deprecated-register is for clang
+# set(CMAKE_CXX_FLAGS "-std=c++0x -Wno-deprecated-register")
+
+
+# new, for gcc
+set(CMAKE_CXX_FLAGS "-std=c++11")
 
 #
 ## libbats
@@ -249,6 +255,8 @@ configure_file(xml/nao_mdl.xml xml/nao_mdl.xml COPYONLY)
 add_library(bats
 ${LIBBATS_SOURCES}
 )
+
+target_compile_options(bats PRIVATE -fPIC)
 
 target_link_libraries(bats ${LIBXML2_LIBRARIES} ${SigC++_LIBRARIES})
 
