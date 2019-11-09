@@ -9,7 +9,7 @@
  *		Matthijs Platje (mplatje@gmail.com)
  *		Jeroen Kuijpers (jkuypers@gmail.com)
  *
- *  Date: 	August 17, 20013
+ *  Date: 	August 17, 2013
  *
  *  Website:	https://github.com/sgvandijk/libbats
  *
